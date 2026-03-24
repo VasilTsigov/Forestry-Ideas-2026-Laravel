@@ -43,7 +43,7 @@
     </a>
 </div>
 
-{{-- Sponsor --}}
-<div class="bg-white border border-gray-200 rounded-lg p-5">
-    <img src="{{ asset('images/Mondi-Logo_Animation.gif') }}" class="w-full" alt="Mondi">
+{{-- Ad slot --}}
+<div class="border-2 border-dashed border-gray-200 rounded-lg p-5 flex items-center justify-center min-h-28">
+    <p class="text-sm text-gray-400 text-center">This space is available for advertising</p>
 </div>

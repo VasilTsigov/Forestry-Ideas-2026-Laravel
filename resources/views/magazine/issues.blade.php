@@ -5,18 +5,44 @@
 @section('page-subtitle', 'Browse articles by issue')
 
 @section('content')
-  <form method="GET" action="{{ route('magazine.issues') }}" class="mb-6">
-    <select name="journal" onchange="this.form.submit()"
-            class="px-3 py-2 border border-gray-300 rounded bg-white text-sm text-gray-800 cursor-pointer min-w-90 focus:outline-none focus:border-forest-500">
-      <option value="">Select issue...</option>
-      @foreach($journals as $j)
-        <option value="{{ $j->journalID }}"
-          {{ $selectedJournal && $selectedJournal->journalID == $j->journalID ? 'selected' : '' }}>
-          {{ $j->journalTitle }}, {{ $j->journalYear }}, Vol. {{ $j->journalVolume }}, No. {{ $j->journalNr }}
-        </option>
-      @endforeach
-    </select>
+  {{-- Search --}}
+  <form method="GET" action="{{ route('magazine.issues') }}" class="mb-4">
+    <div class="flex gap-2">
+      <input type="text" name="q" value="{{ $query }}"
+             placeholder="Search by title, author, institution or abstract..."
+             class="flex-1 px-3 py-2 border border-gray-300 rounded bg-white text-sm text-gray-800 focus:outline-none focus:border-forest-500">
+      <button type="submit"
+              class="px-4 py-2 bg-forest-600 text-white text-sm font-semibold rounded hover:bg-forest-700 transition-colors">
+        Search
+      </button>
+      @if($query)
+        <a href="{{ route('magazine.issues') }}"
+           class="px-4 py-2 border border-gray-300 text-gray-600 text-sm font-semibold rounded hover:bg-gray-50 transition-colors">
+          Clear
+        </a>
+      @endif
+    </div>
   </form>
+
+  @if(!$query)
+    {{-- Browse by issue --}}
+    <form method="GET" action="{{ route('magazine.issues') }}" class="mb-6">
+      <select name="journal" onchange="this.form.submit()"
+              class="px-3 py-2 border border-gray-300 rounded bg-white text-sm text-gray-800 cursor-pointer min-w-90 focus:outline-none focus:border-forest-500">
+        <option value="">Select issue...</option>
+        @foreach($journals as $j)
+          <option value="{{ $j->journalID }}"
+            {{ $selectedJournal && $selectedJournal->journalID == $j->journalID ? 'selected' : '' }}>
+            {{ $j->journalTitle }}, {{ $j->journalYear }}, Vol. {{ $j->journalVolume }}, No. {{ $j->journalNr }}
+          </option>
+        @endforeach
+      </select>
+    </form>
+  @else
+    <p class="text-sm text-gray-500 mb-4">
+      {{ $articles->total() }} {{ $articles->total() === 1 ? 'result' : 'results' }} for "<strong class="text-gray-700">{{ e($query) }}</strong>"
+    </p>
+  @endif
 
   {{-- Article list --}}
   <div id="articles-list">
@@ -35,11 +61,11 @@
 
         <div class="flex items-center justify-between mt-2.5 pt-2 border-t border-gray-100 text-xs">
           <div class="text-gray-400">
-            @if($selectedJournal)
-              {{ $selectedJournal->journalTitle }},
-              {{ $selectedJournal->journalYear }},
-              Vol. {{ $selectedJournal->journalVolume }},
-              No. {{ $selectedJournal->journalNr }}
+            @if($article->magazine)
+              {{ $article->magazine->journalTitle }},
+              {{ $article->magazine->journalYear }},
+              Vol. {{ $article->magazine->journalVolume }},
+              No. {{ $article->magazine->journalNr }}
             @endif
             @if($article->issueCount)
               &mdash; {{ $article->issueCount }} downloads
@@ -108,11 +134,11 @@
 
           <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100 text-xs">
             <div class="text-gray-400">
-              @if($selectedJournal)
-                {{ $selectedJournal->journalTitle }},
-                {{ $selectedJournal->journalYear }},
-                Vol. {{ $selectedJournal->journalVolume }},
-                No. {{ $selectedJournal->journalNr }}
+              @if($article->magazine)
+                {{ $article->magazine->journalTitle }},
+                {{ $article->magazine->journalYear }},
+                Vol. {{ $article->magazine->journalVolume }},
+                No. {{ $article->magazine->journalNr }}
               @endif
               @if($article->issueCount)
                 &mdash; {{ $article->issueCount }} downloads

@@ -36,26 +36,39 @@ class MagazineController extends Controller
             ->orderByDesc('journalID')
             ->get();
 
+        $query           = trim($request->input('q', ''));
         $selectedJournal = null;
-        $articles = collect();
+        $articles        = collect();
 
-        if ($request->filled('journal')) {
+        if ($query !== '') {
+            $articles = Article::with('magazine')
+                ->where(function ($q) use ($query) {
+                    $q->where('issueTitle',   'like', "%{$query}%")
+                      ->orWhere('issueAutor',   'like', "%{$query}%")
+                      ->orWhere('issueFrom',    'like', "%{$query}%")
+                      ->orWhere('issueSummary', 'like', "%{$query}%");
+                })
+                ->orderByDesc('issueJournalID')
+                ->orderBy('issueID')
+                ->paginate(15);
+        } elseif ($request->filled('journal')) {
             $selectedJournal = Magazine::find($request->journal);
             if ($selectedJournal) {
-                $articles = Article::where('issueJournalID', $selectedJournal->journalID)
+                $articles = Article::with('magazine')
+                    ->where('issueJournalID', $selectedJournal->journalID)
                     ->orderBy('issueID')
                     ->paginate(10);
             }
         } else {
-            // По подразбиране — последния брой
             $selectedJournal = $journals->first();
             if ($selectedJournal) {
-                $articles = Article::where('issueJournalID', $selectedJournal->journalID)
+                $articles = Article::with('magazine')
+                    ->where('issueJournalID', $selectedJournal->journalID)
                     ->orderBy('issueID')
                     ->paginate(10);
             }
         }
 
-        return view('magazine.issues', compact('journals', 'selectedJournal', 'articles'));
+        return view('magazine.issues', compact('journals', 'selectedJournal', 'articles', 'query'));
     }
 }

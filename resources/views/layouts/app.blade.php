@@ -51,6 +51,14 @@
                    class="px-3 py-2 text-sm font-medium rounded transition-colors {{ request()->routeIs('conference.*') ? 'text-forest-600 bg-forest-50' : 'text-gray-600 hover:text-navy-800 hover:bg-gray-50' }}">
                     Conferences
                 </a>
+                <a href="{{ route('news.index') }}"
+                   class="px-3 py-2 text-sm font-medium rounded transition-colors {{ request()->routeIs('news.*') ? 'text-forest-600 bg-forest-50' : 'text-gray-600 hover:text-navy-800 hover:bg-gray-50' }}">
+                    News
+                </a>
+                <a href="{{ route('page.subscription') }}"
+                   class="px-3 py-2 text-sm font-medium rounded transition-colors {{ request()->routeIs('page.subscription') ? 'text-forest-600 bg-forest-50' : 'text-gray-600 hover:text-navy-800 hover:bg-gray-50' }}">
+                    Subscription
+                </a>
                 <a href="{{ route('page.publication-ethics') }}"
                    class="px-3 py-2 text-sm font-medium rounded transition-colors {{ request()->routeIs('page.publication-ethics') ? 'text-forest-600 bg-forest-50' : 'text-gray-600 hover:text-navy-800 hover:bg-gray-50' }}">
                     Publication Ethics
@@ -74,6 +82,8 @@
             <a href="{{ route('magazine.issues') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">Issues</a>
             <a href="{{ route('page.instructions-to-authors') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">Instructions</a>
             <a href="{{ route('conference.index') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">Conferences</a>
+            <a href="{{ route('news.index') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">News</a>
+            <a href="{{ route('page.subscription') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">Subscription</a>
             <a href="{{ route('page.publication-ethics') }}" class="px-3 py-2 text-sm font-medium text-gray-700 rounded hover:bg-gray-50">Publication Ethics</a>
         </div>
     </div>

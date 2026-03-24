@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+
+    --color-navy-900: #0d2b1a;
+    --color-navy-800: #1a4a2e;
+    --color-navy-700: #2d6a4f;
+    --color-navy-100: #d8f3dc;
+    --color-navy-50:  #f2faf5;
+
+    --color-forest-700: #1e5c3e;
+    --color-forest-600: #2d6a4f;
+    --color-forest-500: #40916c;
+    --color-forest-400: #74c69d;
+    --color-forest-100: #e8f4ee;
+    --color-forest-50:  #f2faf5;
+}
+
+@layer base {
+    html {
+        font-family: var(--font-sans);
+        color: #1a202c;
+    }
+    h1, h2, h3, h4 {
+        font-family: var(--font-serif);
+        font-weight: 700;
+    }
+}
+
+@layer components {
+    .section-title {
+        @apply text-xl font-bold text-navy-800 mb-5 pb-3 border-b border-gray-200;
+    }
+}
+
+@layer base {
+    /* Force site font in rich-text content from database */
+    .db-content h1,
+    .db-content h2,
+    .db-content h3,
+    .db-content h4,
+    .db-content h5,
+    .db-content h6,
+    .db-content * {
+        font-family: var(--font-sans);
+    }
+    /* Legacy alias */
+    .instructions-content * {
+        font-family: var(--font-sans) !important;
+        font-size: revert;
+    }
+}
+
+@layer base {
+    /* Trix editor figures — display side by side */
+    figure.attachment--preview {
+        display: inline-block;
+        vertical-align: top;
+        margin: 4px;
+    }
+    figure.attachment--preview img {
+        display: block;
+        border-radius: 4px;
+        box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+    }
+    figure.attachment--preview figcaption {
+        display: none;
+    }
+}

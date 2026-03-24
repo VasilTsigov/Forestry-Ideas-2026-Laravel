@@ -1,0 +1,102 @@
+/* ── Article card (Issues / Show pages) ───────────── */
+.article-card {
+  background: #fafff8;
+  border: 1px solid #ccdece;
+  border-radius: 7px;
+  padding: 16px 20px;
+  margin: 10px 0;
+  transition: box-shadow 0.15s;
+}
+
+.article-card:hover {
+  box-shadow: 0 2px 12px rgba(40, 100, 70, 0.1);
+}
+
+.article-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.article-author {
+  color: #3a5a3a;
+  font-size: 0.87rem;
+  margin-top: 3px;
+}
+
+.article-affiliation {
+  color: #5a7a5a;
+  font-size: 0.84rem;
+  margin-top: 2px;
+}
+
+.article-abstract {
+  color: #4a6a4a;
+  font-style: italic;
+  font-size: 0.86rem;
+  margin-top: 8px;
+  line-height: 1.55;
+}
+
+.article-abstract strong {
+  font-style: normal;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #2d6a4f;
+}
+
+.article-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #deeede;
+  font-size: 0.82rem;
+}
+
+.article-journal-ref {
+  color: #6a8a6a;
+}
+
+.article-download a {
+  display: inline-block;
+  padding: 4px 13px;
+  background: #2d6a4f;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.article-download a:hover {
+  background: #1a3c28;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ── Issues page filter select ────────────────────── */
+.issues-filter {
+  margin-bottom: 18px;
+}
+
+.issues-filter select {
+  padding: 8px 12px;
+  border: 1px solid #9ec49e;
+  border-radius: 5px;
+  background: #f0f7f0;
+  font-family: inherit;
+  font-size: 0.91rem;
+  color: #1c2e1e;
+  min-width: 380px;
+  cursor: pointer;
+}
+
+.issues-filter select:focus {
+  outline: none;
+  border-color: #52b788;
+}

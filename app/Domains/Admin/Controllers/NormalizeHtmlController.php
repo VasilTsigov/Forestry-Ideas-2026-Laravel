@@ -130,8 +130,19 @@ class NormalizeHtmlController extends Controller
             $html = preg_replace('/\n/', '<br>', $html) ?? $html;
         }
 
-        // 9. Remove empty paragraphs
-        $html = preg_replace('/<p>\s*(<br>\s*)*<\/p>/i', '', $html) ?? $html;
+        // 9. Remove leading/trailing <br> inside paragraphs
+        $html = preg_replace('/<p>(\s*<br>\s*)+/i', '<p>', $html) ?? $html;
+        $html = preg_replace('/(\s*<br>\s*)+<\/p>/i', '</p>', $html) ?? $html;
+
+        // 10. Collapse consecutive <br> tags to a single one
+        $html = preg_replace('/(<br>\s*){2,}/i', '<br>', $html) ?? $html;
+
+        // 11. Remove orphan <br> adjacent to block boundaries
+        $html = preg_replace('/<\/p>(\s*<br>)+/i', '</p>', $html) ?? $html;
+        $html = preg_replace('/(<br>)+\s*(<p)/i', '$2', $html) ?? $html;
+
+        // 12. Remove empty paragraphs
+        $html = preg_replace('/<p>\s*<\/p>/i', '', $html) ?? $html;
 
         $result = trim($html);
 

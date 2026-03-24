@@ -52,6 +52,10 @@
     .db-content * {
         font-family: var(--font-sans);
     }
+    /* Remove default paragraph margins in compact card content */
+    .db-content p {
+        margin: 0;
+    }
     /* Legacy alias */
     .instructions-content * {
         font-family: var(--font-sans) !important;

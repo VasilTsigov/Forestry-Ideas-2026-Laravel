@@ -47,6 +47,22 @@ class DownloadController extends Controller
     }
 
     /**
+     * Download a journal table-of-contents PDF.
+     */
+    public function journalContent(Magazine $magazine): BinaryFileResponse
+    {
+        abort_unless($magazine->journalFileContent, 404);
+
+        $path = storage_path('app/files/journal_content/' . $magazine->journalFileContent);
+
+        abort_unless(file_exists($path), 404);
+
+        return response()->download($path, $magazine->journalFileContent, [
+            'Content-Type' => 'application/pdf',
+        ]);
+    }
+
+    /**
      * Download a conference PDF.
      */
     public function conference(int $id): BinaryFileResponse

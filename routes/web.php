@@ -24,6 +24,7 @@ Route::get('/issues', [MagazineController::class, 'issues'])->name('magazine.iss
 // Downloads (served from storage, not public)
 Route::get('/download/article/{article}', [DownloadController::class, 'article'])->name('download.article');
 Route::get('/download/journal/{magazine}', [DownloadController::class, 'journal'])->name('download.journal');
+Route::get('/download/journal-content/{magazine}', [DownloadController::class, 'journalContent'])->name('download.journal-content');
 Route::get('/download/conference/{id}', [DownloadController::class, 'conference'])->name('download.conference');
 
 // Articles

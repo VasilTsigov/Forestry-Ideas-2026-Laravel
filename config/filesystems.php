@@ -47,6 +47,18 @@ return [
             'report' => false,
         ],
 
+        'journal' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files/journal'),
+            'throw' => false,
+        ],
+
+        'journal_content' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files/journal_content'),
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

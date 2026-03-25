@@ -27,7 +27,7 @@ class MagazineResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form->schema([
+        return $form->columns(1)->schema([
             Grid::make(4)->schema([
                 TextInput::make('journalTitle')
                     ->label('Име')

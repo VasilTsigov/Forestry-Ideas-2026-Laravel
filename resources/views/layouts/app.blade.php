@@ -140,16 +140,20 @@
 
 {{-- Main content --}}
 <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-    <div style="display:grid; grid-template-columns:minmax(0,1fr) 18rem; gap:2.5rem; align-items:start;">
-        <aside style="grid-column:2; grid-row:1;">
-            <div style="position:sticky; top:5.5rem;">
-                @include('partials.sidebar')
+    @if(!empty($noSidebar))
+        @yield('content')
+    @else
+        <div style="display:grid; grid-template-columns:minmax(0,1fr) 18rem; gap:2.5rem; align-items:start;">
+            <aside style="grid-column:2; grid-row:1;">
+                <div style="position:sticky; top:5.5rem;">
+                    @include('partials.sidebar')
+                </div>
+            </aside>
+            <div style="grid-column:1; grid-row:1; min-width:0;">
+                @yield('content')
             </div>
-        </aside>
-        <div style="grid-column:1; grid-row:1; min-width:0;">
-            @yield('content')
         </div>
-    </div>
+    @endif
 </main>
 
 {{-- Footer --}}

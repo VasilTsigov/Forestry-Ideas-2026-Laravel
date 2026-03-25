@@ -9,6 +9,8 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Facades\FilamentView;
+use Illuminate\Support\Facades\Blade;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -53,6 +55,19 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->renderHook('panels::body.end', fn () => Blade::render(<<<'HTML'
+                <script>
+                    document.addEventListener('trix-before-paste', function (e) {
+                        if (!e.paste || !e.paste.string) return;
+                        // Normalize single line breaks from PDF copy-paste to spaces
+                        e.paste.string = e.paste.string
+                            .replace(/\r\n/g, '\n')
+                            .replace(/([^\n])\n([^\n])/g, '$1 $2')
+                            .replace(/ {2,}/g, ' ')
+                            .trim();
+                    });
+                </script>
+                HTML));
     }
 }

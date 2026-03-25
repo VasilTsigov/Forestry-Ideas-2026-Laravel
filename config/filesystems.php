@@ -47,6 +47,12 @@ return [
             'report' => false,
         ],
 
+        'issue' => [
+            'driver' => 'local',
+            'root' => storage_path('app/files/issue'),
+            'throw' => false,
+        ],
+
         'journal' => [
             'driver' => 'local',
             'root' => storage_path('app/files/journal'),

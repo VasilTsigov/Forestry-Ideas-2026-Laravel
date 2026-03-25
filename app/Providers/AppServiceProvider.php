@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Filament\Forms\Form;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination::tailwind');
         Paginator::defaultSimpleView('pagination::simple-tailwind');
+
+        Form::configureUsing(fn (Form $form) => $form->columns(1));
     }
 }

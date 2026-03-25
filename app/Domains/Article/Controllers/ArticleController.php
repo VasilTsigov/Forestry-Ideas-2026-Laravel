@@ -10,6 +10,6 @@ class ArticleController extends Controller
 {
     public function show(Article $article): View
     {
-        return view('article.show', compact('article'));
+        return view('article.show', compact('article'))->with('noSidebar', true);
     }
 }

@@ -5,6 +5,7 @@
 @section('page-subtitle', 'Full list of published issues')
 
 @section('content')
+  <div class="bg-white border border-gray-200 rounded-lg p-5">
   @foreach($magazines as $magazine)
     <div class="flex items-center justify-between gap-3 py-2 border-b border-gray-100 last:border-0">
       <div class="flex-1 text-sm">
@@ -43,4 +44,5 @@
   @if($magazines->isEmpty())
     <p class="text-gray-500">No journals in database.</p>
   @endif
+  </div>
 @endsection

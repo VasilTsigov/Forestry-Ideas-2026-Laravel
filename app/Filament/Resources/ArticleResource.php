@@ -6,9 +6,9 @@ use App\Domains\Article\Models\Article;
 use App\Domains\Magazine\Models\Magazine;
 use App\Filament\Resources\ArticleResource\Pages;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use FilamentTiptapEditor\TiptapEditor;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\EditAction;
@@ -54,21 +54,21 @@ class ArticleResource extends Resource
                     fn (TemporaryUploadedFile $file) => 'Forestry_Ideas_BG_' . $file->getClientOriginalName()
                 ),
 
-            RichEditor::make('issueTitle')
+            TiptapEditor::make('issueTitle')
                 ->label('Title')
-                ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList']),
+                ->profile('simple'),
 
-            RichEditor::make('issueAutor')
+            TiptapEditor::make('issueAutor')
                 ->label('Autor')
-                ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList']),
+                ->profile('simple'),
 
-            RichEditor::make('issueFrom')
+            TiptapEditor::make('issueFrom')
                 ->label('From')
-                ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList']),
+                ->profile('simple'),
 
-            RichEditor::make('issueSummary')
+            TiptapEditor::make('issueSummary')
                 ->label('Summary')
-                ->toolbarButtons(['bold', 'italic', 'bulletList', 'orderedList']),
+                ->profile('default'),
         ]);
     }
 

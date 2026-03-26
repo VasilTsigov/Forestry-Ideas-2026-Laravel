@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -52,11 +53,7 @@
     .db-content * {
         font-family: var(--font-sans);
     }
-    /* Remove default paragraph margins in compact card content */
-    .db-content p {
-        margin: 0;
-    }
-    /* Legacy alias */
+/* Legacy alias */
     .instructions-content * {
         font-family: var(--font-sans) !important;
         font-size: revert;

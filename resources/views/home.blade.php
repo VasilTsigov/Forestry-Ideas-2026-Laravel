@@ -7,7 +7,7 @@
 @section('content')
   @if($homeContent)
     <div class="bg-white border border-gray-200 rounded-lg p-5">
-      <div class="prose prose-sm max-w-none leading-relaxed text-gray-800">
+      <div class="prose max-w-none leading-relaxed text-gray-800">
         {!! $homeContent->homeText !!}
       </div>
     </div>
